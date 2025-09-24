@@ -6,7 +6,7 @@ hero:
   name: "Rafael Leon Greenblatt"
   tagline: "Associate Professor of Mathematical Physics"
   image:
-     src: ./media/headshot.jpg
+     src: ./headshot.jpg
      alt: A photograph of me
      style: "border-radius: 10%;"
   actions:
