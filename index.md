@@ -12,10 +12,10 @@ hero:
   actions:
     - theme: brand
       text: Didattica/Teaching
-      link: /didattica
+      link: didattica
     - theme: brand
       text: Research
-      link: /research
+      link: research
     - theme: brand
       text: Curriculum Vitae
       link: ./EuroCV.pdf
