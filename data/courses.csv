@@ -1,7 +1,7 @@
 academic_year,semester,title,program,comment,internal_link,external_link
 25,2,Meccanica Superiore I,CdL Magistrale di Matematica,,ms1_2026,
-25,1,Calculus,CdL Global Governance,codocenza con Alfonso Sorrentino,,
-25,1,Mathematics for Economics and Finance,CdL Business Administration and Economics,codocenza con Christoph Lhotka,,
+25,1,Calculus,CdL Global Governance,codocenza con Alfonso Sorrentino,,https://economia.uniroma2.it/ba/globalgovernance/corso/2945/
+25,1,Mathematics for Economics and Finance,CdL Business Administration and Economics,codocenza con Christoph Lhotka,,https://economia.uniroma2.it/ba/business-administration-economics/corso/programma/2946/
 24,1,Matematica,CdL Scienze Biologiche,Canale M-Z,matbio24,
 24,2,Fisica Matematica I,CdL Triennale di Matematica,esercitazioni,,https://www.mat.uniroma2.it/~liverani/Meccanica24/meccanica.html
 24,2,Fisica Matematica II,CdL Triennale di Matematica,esercitazioni,,
