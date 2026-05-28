@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Homepage of Rafael Leon Greenblatt",
   description: "Academic homepage",
-  base: '/~greenblatt/',
+  base: process.env.VITEPRESS_BASE ?? '/~greenblatt/',
   lastUpdated: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config

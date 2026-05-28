@@ -1,4 +1,4 @@
-name: Deploy site to server
+name: Deploy site to server and to github.io
 
 on:
   push:
@@ -6,26 +6,60 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: npm
+
       - name: Install dependencies
         run: npm ci
+
       - name: Build with VitePress
         run: npm run build
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        env:
+          VITEPRESS_BASE: /personal_webpage/
+
+
+      # Replaces the upload-artifact step.
+      # upload-pages-artifact is required by deploy-pages.
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: site-artifact
           path: .vitepress/dist/
-      - name: Deploy to server over ssh
+  deploy-ssh:
+    needs: build
+    runs-on: ubuntu-latest
+    # Following should probably be removed if/when department server is back up, as it blocks error messages
+    continue-on-error: true 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build with VitePress
+        run: npm run build
+        
+     # - name: Upload artifact
+     #   uses: actions/upload-artifact@v4
+     #   with:
+     #     name: site-artifact
+     #     path: .vitepress/dist/
+      - name: Deploy to server over SSH
         uses: easingthemes/ssh-deploy@v4
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
@@ -35,3 +69,19 @@ jobs:
           REMOTE_USER: ${{ vars.REMOTE_USER }}
           TARGET: ${{ vars.REMOTE_TARGET }}
           EXCLUDE: ""
+          
+          
+  deploy-pages:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
