@@ -27,4 +27,15 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     ]
   }
+  
+  vite: {
+    // For multiple deployments, linking to pages on the site that are generated outside of this repo
+    define: {
+      __BASE_URL__: JSON.stringify(
+        process.env.VITEPRESS_BASE
+          ? `https://username.github.io/`
+          : 'https://www.mat.uniroma2.it/~greenblatt/'
+      )
+    }
+  }
 })
