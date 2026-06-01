@@ -33,7 +33,7 @@ export default defineConfig({
     define: {
       __BASE_URL__: JSON.stringify(
         process.env.VITEPRESS_BASE
-          ? `https://username.github.io/`
+          ? `https://rafaelgreenblatt.github.io/`
           : 'https://www.mat.uniroma2.it/~greenblatt/'
       )
     }
