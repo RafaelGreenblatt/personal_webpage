@@ -26,7 +26,7 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     ]
-  }
+  },
   
   vite: {
     // For multiple deployments, linking to pages on the site that are generated outside of this repo
