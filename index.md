@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Rafael Leon Greenblatt"
-  tagline: "Associate Professor of Mathematical Physics"
+  tagline: "Associate Professor of Mathematical Physics, Tor Vergata University of Rome"
   image:
      src: ./headshot.jpg
      alt: A photograph of me
@@ -23,9 +23,9 @@ hero:
 ---
 
 ## About me
-I work on models from from statistical mechanics, mostly trying to understand what happens in and around critical points. I use an eclectic collection of methods, but especially the constructive renormalization group for Fermions.
+I work on models from from statistical mechanics and Euclidean field theory, mostly trying to understand what happens in and around critical points. I use an eclectic collection of methods, but especially the constructive renormalization group for Fermions.
 
-I am originally from the United States, but I have lived and worked in Europe (mostly Italy) since I finished my Ph.D. in Physics at [Rutgers University](http://www.physics.rutgers.edu) in 2010. Before arriving at Tor Vergata I worked at Roma Tre University, La Sapienza University of Rome, MAP5-CNRS (Paris), the University of Zürich, and SISSA (Trieste). There are more details in my [curriculum vitae](./EuroCV.pdf) (PDF, in Italian).
+I am originally from the United States, but I have lived and worked in Europe (mostly Italy) since I finished my Ph.D. in Physics at [Rutgers University](http://www.physics.rutgers.edu) in 2010. Before arriving at Tor Vergata I worked at [Roma Tre University](https://www.matematicafisica.uniroma3.it/), [La Sapienza University of Rome](https://sbai.web.uniroma1.it/), [MAP5-CNRS (Paris)](https://map5.mi.parisdescartes.fr/), the [University of Zürich](https://www.math.uzh.ch/), and [SISSA (Trieste)](https://www.math.sissa.it/). There are more details in my [curriculum vitae](./EuroCV.pdf) (PDF, in Italian).
 
 ## Practical information
 
