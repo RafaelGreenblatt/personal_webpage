@@ -37,7 +37,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     # Following should probably be removed if/when department server is back up, as it blocks error messages
-    continue-on-error: true 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
