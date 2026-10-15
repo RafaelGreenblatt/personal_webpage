@@ -22,6 +22,7 @@ hero:
 
 ---
 
+
 ## About me
 I work on models from from statistical mechanics and Euclidean field theory, mostly trying to understand what happens in and around critical points. I use an eclectic collection of methods, but especially the constructive renormalization group for Fermions.
 
