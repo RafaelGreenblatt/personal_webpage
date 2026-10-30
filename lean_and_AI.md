@@ -43,11 +43,33 @@ Oliver uses [VS Code](https://code.visualstudio.com/), which is a good choice fo
 
 1. [Download and install VS Code](https://code.visualstudio.com/download); if you use separate user account (like me), you may need to do this step in your admin/root account, depending on your OS.  
 All the subsequent steps should be done in the user account.
-2. [Install Lean and the Lean plugin for VS Code](https://lean-lang.org/install/) I redommend that you don't create a new Lean project yet, despite the instructions.
+2. [Install Lean and the Lean plugin for VS Code](https://lean-lang.org/install/).
 3. Install the plugin for your AI: [Anthropic Claude](vscode:extension/anthropic.claude-code), [OpenAI Codex](https://marketplace.visualstudio.com/items?itemName=openai.chatgpt), [Mistral Vibe](https://marketplace.visualstudio.com/items?itemName=mistralai.mistral-vibe-code), etc.
 
-At this point near the top of your VS Code window you should see a $\forall$ icon for Lean and an icon for your AI interface.
+At this point near the top of your VS Code window you should see a $\forall$ icon for Lean and an icon for your AI interface; if not, you probably need to indicate that folder you are working on is "trusted"; look for a button labelled "restricted mode" in the lower left corner of the Code window.
 
 ## Some comments about Lean
 
+All Lean can do is verify that certain conclusions follow from the specified premises according to certain rules, so the fact that a file compiles doesn't mean anything if the premises are inapropriate or the conclusion is not what you actually want to prove.
 
+Ideally, the premises will only be foundational axioms of mathematics; besides the axioms that are built into the structure of the language and compiler, this is [usually understood to mean](https://lean-lang.org/theorem_proving_in_lean4/find/?domain=Verso.Genre.Manual.section&name=axioms-and-computation) the classical axiom of choice (`Classical.choice` in Lean), propositional extensionality (`propext`), and the quotient axiom (`Quot.sound`).  
+
+A lot of things have already been proven this way and collected into a collection called [mathlib](https://leanprover-community.github.io/mathlib-overview.html); if you are lucky, the main inputs you need will be there.  If not, rather than fill in all the gaps, it is probably a better use of your time to take published results for granted and treat them as `axiom`s.  An AI can set this up for you, but you may have to help it get copies of the papers or books in question and you should check yourself that the statements actually match.
+
+Mathlib also contains a lot of definitions
+
+Memory usage, cache
+
+Kernel bugs
+
+## About GitHub
+
+Public key
+
+Second account
+
+## About AI coding agents
+
+Markdown and memory
+
+MCP
