@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import MarkdownIt from "markdown-it";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -6,6 +7,10 @@ export default defineConfig({
   description: "Academic homepage",
   base: process.env.VITEPRESS_BASE ?? '/~greenblatt/',
   lastUpdated: true,
+  markdown: {
+	  math: true
+  },
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
