@@ -91,3 +91,4 @@ When using GitHub regularly, you will probably want to set up [SSH access with k
 
 Since I already used GitHub regularly, I set up a separate account for AI-aided edits.  This is an extra precaution, since the AI should flag which edits it makes by itself.
 
+Github can also be set to run automatic checks on your repo when you update it ("continuous integration"), for example making sure the Lean code compiles cleanly.  The AI can help you set this up and may very well do it without being explicitly told to.  This is defined in the subfolder `.github/workflows/`, so keep an eye out for unexpected edits there.
