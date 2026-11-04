@@ -8,7 +8,7 @@ This setup is meant to use a cloud AI agent to work with Lean and LaTeX files on
 
 ### Why Lean?
 
-[Lean](lean-lang.org) is a specialized programming language for writing mathematical proofs explicitly enough to be verified according to the rules of formal logic, and a compiler which does that verification algorithmically.  When a proof is written or translated into Lean, this gives an alternative to checking all the details yourself or trusting an AI to check it.
+[Lean](https://lean-lang.org) is a specialized programming language for writing mathematical proofs explicitly enough to be verified according to the rules of formal logic, and a compiler which does that verification algorithmically.  When a proof is written or translated into Lean, this gives an alternative to checking all the details yourself or trusting an AI to check it.
 
 ### Why your local machine?
 
@@ -24,15 +24,15 @@ Working on your local machine gives the AI access to your files and the possibil
 
 ### Why Git?
 
-[Git](git-scm.com) is a distributed version control system, meaning that (when used properly) it keeps track of which files in a folder ("repository" or "repo") are changed when, how, and by who, and gives a very flexible way of synchronizing changes between collaborators working in parallel.  This gives an extra tool for seeing what the AI has done, and fixing unwanted changes.
+[Git](https://git-scm.com) is a distributed version control system, meaning that (when used properly) it keeps track of which files in a folder ("repository" or "repo") are changed when, how, and by who, and gives a very flexible way of synchronizing changes between collaborators working in parallel.  This gives an extra tool for seeing what the AI has done, and fixing unwanted changes.
 
-Git is a free, open-source program that can be used on its own, but is most often used with hosting services such as [GitHub](github.com) (which is a commercial service, but the free version is very good).  Even if you are working on a single computer, synchronizing is a good idea since it gives you an off-site backup.
+Git is a free, open-source program that can be used on its own, but is most often used with hosting services such as [GitHub](https://github.com) (which is a commercial service, but the free version is very good).  Even if you are working on a single computer, synchronizing is a good idea since it gives you an off-site backup.
 
 Unlike e.g. Dropbox, Git does not save versions ("commit") or synchronize ("push/pull") automatically.  This can be an advantage when collaborating, and AI agents can help you deal with the complications it creates, but it does still require some attention on your part.
 
 ### Which AI?
 
-Oliver and I use Anthropic's [Claude](claude.ai), but this is a fairly arbitrary decision, and the systems ("models") available change quite quickly.  Whichever provider you use, you will probably need a paid version to get very far.  If you want to try this without setting up a subscription, you can also use an [API key](https://platform.claude.com/settings/keys) with a small amount of pay-as-you-go credit, however my impression is that subscriptions can be significantly cheaper if you use them regularly.  If you already have a subscription with another provider, just use that.
+Oliver and I use Anthropic's [Claude](https://claude.ai), but this is a fairly arbitrary decision, and the systems ("models") available change quite quickly.  Whichever provider you use, you will probably need a paid version to get very far.  If you want to try this without setting up a subscription, you can also use an [API key](https://platform.claude.com/settings/keys) with a small amount of pay-as-you-go credit, however my impression is that subscriptions can be significantly cheaper if you use them regularly.  If you already have a subscription with another provider, just use that.
 
 ### Why an IDE?
 
