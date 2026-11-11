@@ -59,7 +59,7 @@ jobs:
      #     name: site-artifact
      #     path: .vitepress/dist/
       - name: Deploy to server over SFTP
-        uses: wangyucode/sftp-upload-action@v2
+        uses: wangyucode/sftp-upload-action@v2.0.4
         with:
           host: ${{ vars.REMOTE_HOST }}
           username: ${{ vars.REMOTE_USER }}
