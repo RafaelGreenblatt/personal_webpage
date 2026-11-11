@@ -2,13 +2,27 @@
 
 These are a few notes on the setup used by Oliver Buterley in his presentation on October 28th, for those who want to try it out, possibly with modifications.  My intent is to write what I think is most helpful for you to know to get started, leaving out details that you can fill in yourself (possibly with the help of a chatbot).
 
+I welcome feedback, but I will be travelling from November 13th to December 1st, so I apologize in advance if I am slow in reacting to it.
+
 ## Premises
 
 This setup is meant to use a cloud AI agent to work with Lean and LaTeX files on your local machine, organized in a Git repository, to produce, verify, and manipulate mathematical proofs.  You will interact with any or all of these through an IDE.
 
+This setup could be useful for developing new work of your own or exploring existing formal proofs, or for formalizing conventional proofs in order to check them.  Incidentally, this last item was my original motivation for using this kind of approach: taking a hard-to-read AI-written paper and checking it in a way that I could have some confidence in.
+
 ### Why Lean?
 
 [Lean](https://lean-lang.org) is a specialized programming language for writing mathematical proofs explicitly enough to be verified according to the rules of formal logic, and a compiler which does that verification algorithmically.  Writing or translating a proof into Lean gives an alternative to checking all the details yourself or trusting an AI to check them.
+
+When using AI to develop proofs, formalizing them can be a good way of keeping the AI honest, since it then can't claim proof works unless Lean accepts it (although this is not an absolute guarantee; see [below](#some-comments-about-lean) for more on this).
+
+### Why NOT Lean?
+
+Writing and compiling Lean takes a significant amount of computational resources.  Compiled Lean projects use a lot of disk space, the Lean compiler can easily use enough RAM to lead to crashes on smaller machines, and writing and debugging Lean code often uses a nontrivial amount of AI resources, particularly compared to less rigorous alternatives.
+
+Writing a proof with formalization in mind can lead to a different proof: some kinds of proofs are better suited than others to the structure of Lean as a language or of the standard results the proof will probably use.  The corpus of existing results is still limited to varying degrees depending on the field, and both the amount of effort required and the usefulness of the outcome depend on this.
+
+See [below](#some-comments-about-lean) for more details.
 
 ### Why your local machine?
 
@@ -42,7 +56,7 @@ Oliver uses [VS Code](https://code.visualstudio.com/), which is a good choice fo
 
 ## Installation
 
-If you use a separate user account (as I do), you may need to do the first two steps in your admin/root account, depending on your OS:
+If you use a separate user account (as I do), you may need to do the first two steps in your admin/root account, depending on your OS.  I assume you already have LaTeX set up.
 
 1. [Download and install VS Code](https://code.visualstudio.com/download).
 2. Install [Git](https://git-scm.com/install/) and [GitHub CLI, aka `gh`](https://cli.github.com/).
@@ -67,19 +81,22 @@ When using AI agents intended for coding, you will probably want to make sure th
 
 AI models have a limited amount of "context", which you can think of as working memory, and for various reasons you will/should regularly start new "sessions", which reset it.  Consequently, agents use [Markdown](https://en.wikipedia.org/wiki/Markdown) text files as something like notes or long-term memory.  You can also use files like this to give instructions, for example with [CLAUDE.md](https://claude.com/resources/articles/using-claude-md-files) or its counterparts for other models.
 
-Besides the command line, agents can call programs on your machine through [MCP](https://en.wikipedia.org/wiki/Model_Context_Protocol).  I recommend telling your agents to use [lean-lsp-mcp](https://github.com/oOo0oOo/lean-lsp-mcp) when writing/editing Lean code; they can walk you through the setup, which usually has to be done for each project.
+Besides the command line, agents can call programs on your machine through [MCP](https://en.wikipedia.org/wiki/Model_Context_Protocol).  I recommend telling your agents to use [lean-lsp-mcp](https://github.com/oOo0oOo/lean-lsp-mcp) when writing/editing Lean code; they can walk you through the setup, part of which usually has to be done for each project.
 
 ### Some comments about Lean
 
-All Lean can do is verify that certain conclusions follow from the specified premises according to certain rules, so the fact that a file compiles doesn't mean anything if the premises are inappropriate or the conclusion is not what you actually want to prove.
+All Lean can do is verify that certain conclusions follow from the specified premises according to certain rules, so the fact that a file compiles doesn't mean anything if the premises are inappropriate or the conclusion is not what you actually want to prove.  
 
-Ideally, the premises will only be foundational axioms of mathematics; besides the axioms that are built into the structure of the language and compiler, this is [usually understood to mean](https://lean-lang.org/theorem_proving_in_lean4/find/?domain=Verso.Genre.Manual.section&name=axioms-and-computation) the classical axiom of choice (`Classical.choice` in Lean), propositional extensionality (`propext`), and the quotient axiom (`Quot.sound`).
+Ideally, the premises will only be foundational axioms of mathematics; besides the axioms that are built into the structure of the language and compiler, this is [usually understood to mean](https://lean-lang.org/theorem_proving_in_lean4/find/?domain=Verso.Genre.Manual.section&name=axioms-and-computation) the classical axiom of choice (`Classical.choice` in Lean), propositional extensionality (`propext`), and the quotient axiom (`Quot.sound`).  One thing that the final proof definitely should *not* depend on is `sorryAx`: this is a dummy axiom used to define a placeholder (`sorry`) which tells the compiler to skip parts of a proof that are intended to be filled in later.
 
-A lot of things have already been proven this way and compiled into a collection called [Mathlib](https://leanprover-community.github.io/mathlib-overview.html); if you are lucky, the main inputs you need will be there.  If not, rather than filling in all the gaps, it is probably a better use of your time to take published results for granted and treat them as `axiom`s.  An AI can set this up for you, but you may have to help it get copies of the papers or books in question, and you should check yourself that the statements actually match before you do anything important with the results.
+
+A lot of things have already been proven this way and compiled into a collection called [Mathlib](https://leanprover-community.github.io/mathlib-overview.html); if you are lucky, the main inputs you need will be there.  If not, rather than filling in all the gaps, it is probably a better use of your (and your AI's) time to take published results for granted and treat them as `axiom`s.  An AI can set this up for you, but you may have to help it get copies of the papers or books in question, and you should check yourself that the statements actually match before you do anything important with the results.
 
 Just as importantly, Mathlib contains a lot of standard definitions.  Since these have been through a lot of review and are pretty heavily used, I feel confident that they are reasonable versions of the generally accepted definitions; however, they sometimes have some peculiarities related to the structure of Lean.
 
-Lean uses a significant amount of disk space and RAM.  Each active Lean project will include a cache of about 8 GB of compiled files (mostly Mathlib), and the tools I recommend will load a significant part of this into RAM while active.  I have been able to run this setup on a machine with 8 GB of RAM, but it is not ideal.  16 GB is fine but still requires some care (mostly delegated to the AI) to avoid crashes and slowdowns.
+Presently, the coverage of Mathlib varies a lot among different areas of mathematics.  Algebra, number theory, and some parts of topology are probably the most extensively covered.  The less well developed Mathlib is in the relevant area, the more you will end up relying on introducing new axioms and definitions.  The consequences of this are complex, however: although the coverage for mathematical physics (including the areas I work in) is limited, I feel more capable of using my own judgement there, whereas Mathlib is more important when I want to use techniques and concepts that I am less familiar with. 
+
+Lean uses a significant amount of disk space and RAM.  Each active Lean project will include a cache of about 8 GB of compiled files (mostly Mathlib), and the tools I recommend will load a significant part of this into RAM while active.  I have been able to run this setup on a machine with 8 GB of RAM, but it is not ideal.  16 GB is fine but still requires some care (mostly delegated to the AI) to avoid crashes and slowdowns, especially if you have other programs running.
 
 Lean's default behavior is to build all dependencies (usually all of Mathlib) from source, which means that the first run of a project (including via an IDE) will be very slow.  You can avoid this by running the command `lake exe cache get` in the project directory (once it is set up with a `lakefile.toml`), which downloads prebuilt versions instead.  Your AI may do this on its own.
 
