@@ -58,17 +58,14 @@ jobs:
      #   with:
      #     name: site-artifact
      #     path: .vitepress/dist/
-      - name: Deploy to server over SSH
-        uses: easingthemes/ssh-deploy@v4
+      - name: Deploy to server over SFTP
+        uses: wangyucode/sftp-upload-action@v2
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          ARGS: "-rlgoDzvc -i"
-          SOURCE: ".vitepress/dist/"
-          REMOTE_HOST: ${{ vars.REMOTE_HOST }}
-          REMOTE_USER: ${{ vars.REMOTE_USER }}
-          TARGET: ${{ vars.REMOTE_TARGET }}
-          EXCLUDE: ""
-          
+          host: ${{ vars.REMOTE_HOST }}
+          username: ${{ vars.REMOTE_USER }}
+          privateKey: ${{ secrets.SERVER_SSH_KEY }}
+          localDir: '.vitepress/dist/'
+          remoteDir: ${{ vars.REMOTE_TARGET }}
           
   deploy-pages:
     needs: build
